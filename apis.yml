@@ -1,23 +1,116 @@
 aid: point-me
 name: POINT.ME
-description: 'POINT.ME is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'point.me is an award-travel company that operates a real-time award flight search engine
+  for consumers and, through point.me Gateway, an API-first embedded loyalty-travel platform that banks
+  and loyalty programs run inside their own branded apps. The consumer product searches award availability
+  across 150+ airline and hotel loyalty programs on Basic/Standard/Premium annual subscriptions, and adds
+  paid concierge booking. Gateway sells award search, point transfers and booking as an embedded integration
+  to financial institutions (Amex among its named partners) and to loyalty programs. The API host api.point.me
+  is live and identifies itself as "Flight Search APIs", but every path on it answers 401 with WWW-Authenticate:
+  Bearer, and Gateway is sold through a demo form rather than a public developer portal, so no machine-readable
+  contract is published.'
 url: https://raw.githubusercontent.com/api-evangelist/point-me/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment
 specificationVersion: '0.20'
 created: '2026-08-26'
 modified: '2026-08-26'
 tags:
+- Travel
+- Award Travel
+- Loyalty
+- Points and Miles
+- Flights
+- Rewards
+- Embedded Finance
+- Banking
+- Search
 - Company
-apis: []
+apis:
+- aid: point-me-flight-search-api
+  name: point.me Flight Search API
+  description: 'The API host point.me operates behind its consumer search product and its Gateway embedded
+    platform. https://api.point.me/ returns HTTP 200 text/plain "Flight Search APIs"; every other path
+    probed (/openapi.json, /swagger.json, /docs, /redoc, /graphql, /mcp, /.well-known/*) returns HTTP
+    401 with WWW-Authenticate: Bearer. point.me publishes no developer portal or reference for it — the
+    Gateway page describes the integration as API-first and routes prospects to a demo form.'
+  humanURL: https://www.point.me/partnerships/
+  baseURL: https://api.point.me
+  tags:
+  - Flights
+  - Award Travel
+  - Loyalty
+  - Search
+  properties:
+  - type: Authentication
+    url: authentication/point-me-authentication.yml
+  - type: OAuthScopes
+    url: scopes/point-me-scopes.yml
+  - type: RateLimits
+    url: rate-limits/point-me-rate-limits.yml
+  - type: Conventions
+    url: conventions/point-me-conventions.yml
+  - type: MCPServer
+    url: mcp/point-me-mcp.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/point-me-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://www.point.me/
+- type: About
+  url: https://www.point.me/about/
+- type: Pricing
+  url: https://www.point.me/our-services
+- type: Plans
+  url: plans/point-me-plans-pricing.yml
+- type: SignUp
+  url: https://point.me/signup/basic
+- type: Support
+  url: https://connect.point.me/help
+- type: HelpCenter
+  url: https://connect.point.me/faq
+- type: Blog
+  url: https://www.point.me/insights/
+- type: Press
+  url: https://www.point.me/press/
+- type: TermsOfService
+  url: https://www.point.me/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://www.point.me/privacy-policy
+- type: Accessibility
+  url: https://www.point.me/accessibility
+- type: Partners
+  url: https://www.point.me/partnerships/
+- type: Jobs
+  url: https://connect.point.me/jobs
+- type: LLMsTxt
+  url: llms/point-me-llms.txt
+- type: WellKnown
+  url: well-known/point-me-well-known.yml
+- type: Authentication
+  url: authentication/point-me-authentication.yml
+- type: OAuthScopes
+  url: scopes/point-me-scopes.yml
+- type: Conformance
+  url: conformance/point-me-conformance.yml
+- type: Compliance
+  url: conformance/point-me-conformance.yml
+- type: Conventions
+  url: conventions/point-me-conventions.yml
+- type: RateLimits
+  url: rate-limits/point-me-rate-limits.yml
+- type: MCPServer
+  url: mcp/point-me-mcp.yml
+image: https://d27oqxoyguxgs9.cloudfront.net/jm-web-images-21082401/site-thumbnail.jpg
+x-enrichment:
+  date: '2026-08-26'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v1

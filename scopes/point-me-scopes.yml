@@ -1,0 +1,70 @@
+generated: '2026-08-26'
+method: probed
+source: >-
+  scopes_supported in https://auth.point.me/.well-known/openid-configuration
+  (HTTP 200, fetched 2026-08-26). point.me publishes no scopes or permissions
+  reference page — these are the scopes its Auth0 identity tenant advertises,
+  not an API authorization model the company documents.
+description: >-
+  OAuth 2.0 / OpenID Connect scopes advertised by the point.me identity tenant.
+  All fourteen are standard OIDC scopes and OIDC claim-shorthand scopes; none are
+  product scopes. No API-resource scopes (audience-specific permissions for
+  api.point.me) are anonymously discoverable, because api.point.me returns 401 on
+  every path including /.well-known/oauth-protected-resource.
+api: point-me-flight-search-api
+issuer: https://auth.point.me/
+authorization_endpoint: https://auth.point.me/authorize
+token_endpoint: https://auth.point.me/oauth/token
+docs: null
+docs_note: no published scopes/permissions reference page was found on any point.me host
+scope_count: 14
+scopes:
+  - name: openid
+    description: Standard OIDC scope; requests an ID token.
+    standard: true
+  - name: profile
+    description: Standard OIDC scope; basic profile claims.
+    standard: true
+  - name: offline_access
+    description: Standard OIDC scope; requests a refresh token.
+    standard: true
+  - name: email
+    description: Standard OIDC scope; the end user's email address.
+    standard: true
+  - name: address
+    description: Standard OIDC scope; the end user's postal address.
+    standard: true
+  - name: phone
+    description: Standard OIDC scope; the end user's phone number.
+    standard: true
+  - name: name
+    description: OIDC claim-shorthand scope (Auth0); full name claim.
+    standard: true
+  - name: given_name
+    description: OIDC claim-shorthand scope (Auth0); given name claim.
+    standard: true
+  - name: family_name
+    description: OIDC claim-shorthand scope (Auth0); family name claim.
+    standard: true
+  - name: nickname
+    description: OIDC claim-shorthand scope (Auth0); nickname claim.
+    standard: true
+  - name: email_verified
+    description: OIDC claim-shorthand scope (Auth0); email verification status.
+    standard: true
+  - name: picture
+    description: OIDC claim-shorthand scope (Auth0); profile picture claim.
+    standard: true
+  - name: created_at
+    description: Auth0 claim-shorthand scope; account creation timestamp.
+    standard: false
+  - name: identities
+    description: Auth0 claim-shorthand scope; linked identity providers.
+    standard: false
+x-evidence:
+  checked: '2026-08-26'
+  probes:
+    - url: https://auth.point.me/.well-known/openid-configuration
+      status: 200
+    - url: https://api.point.me/.well-known/oauth-protected-resource
+      status: 401

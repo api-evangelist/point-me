@@ -1,0 +1,24 @@
+# point.me
+
+> point.me website
+
+## Markdown access
+
+Append .md to any page URL for a markdown version. Pages: `/{slug}.md`; Articles: `/insights/{type}/{slug}.md`; Team: `/insights/author/{slug}.md`.
+
+## Key pages
+
+- [Home](https://www.point.me/index.md): Home page
+- [Book Travel with Points | Award Flight Search & Booking | point.me](https://www.point.me/index.md)
+- [Take a 2-minute credit card quiz to get a personalized plan for earning more points  | point.me](https://www.point.me/credit-card-quiz.md)
+- [Book Travel with Points | Turn Business Spending into Unbeatable Travel Value | point.me](https://www.point.me/small-business.md)
+- [point.me Terms and Conditions](https://www.point.me/terms-and-conditions.md)
+- [point.me Privacy Policy](https://www.point.me/privacy-policy.md)
+- [America's $300 Billion Travel Secret: Why Millions Don’t Know They’re Sitting on a Fortune](https://www.point.me/insights/points-wealth.md)
+- [Review: The New Sapphire Reserve for Business℠](https://www.point.me/insights/chase-sapphire-reserve-for-business.md)
+- [The Best Airline Co-Branded Credit Cards](https://www.point.me/insights/the-best-airline-co-branded-credit-cards.md)
+
+## Optional
+
+- [Markdown index](https://www.point.me/markdown-index.txt): Complete list of all pages available in markdown format
+- [Site information](https://www.point.me/site-info.md): Factual summary of site content (counts, lists) for support and AI

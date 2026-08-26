@@ -1,0 +1,42 @@
+generated: '2026-08-26'
+method: probed
+source: >-
+  Direct MCP probes run 2026-08-26 against every point.me host: POST tools/list to
+  https://api.point.me/mcp (401), https://www.point.me/mcp (404), and DNS lookups
+  for mcp.point.me (NXDOMAIN). No MCP server is published, referenced in
+  https://www.point.me/llms.txt, or found in any registry or the point.me GitHub org.
+description: >-
+  point.me ships no Model Context Protocol server — neither a remote endpoint nor a
+  local stdio package. No candidate tool list is derived either, because point.me
+  publishes no OpenAPI to derive one from: api.point.me returns 401 on every path.
+  This is a recorded absence, not a candidate.
+api: point-me-flight-search-api
+status: none
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+tools: []
+tool_count: 0
+note: >-
+  Third parties in this market do ship MCP servers for award search (for example
+  awardtravelfinder.com/mcp), but none of them are point.me and none are wired here.
+  A candidate tool list was deliberately NOT derived: with no readable contract,
+  any tool names would be invented.
+x-evidence:
+  checked: '2026-08-26'
+  probes:
+    - url: https://api.point.me/mcp
+      status: 401
+      method: POST tools/list
+    - url: https://www.point.me/mcp
+      status: 404
+      method: POST tools/list
+    - url: https://mcp.point.me/mcp
+      status: 0
+      note: DNS NXDOMAIN — host does not resolve
+    - url: https://api.point.me/.well-known/oauth-protected-resource
+      status: 401

@@ -1,0 +1,66 @@
+generated: '2026-08-26'
+method: searched
+source: https://www.point.me/our-services
+description: >-
+  point.me's published consumer subscription plans and concierge service pricing,
+  read from its own Annual Subscription Plans page on 2026-08-26. These are
+  end-user product plans, not API plans — point.me publishes no API pricing at all.
+currency: USD
+billing_period: annual
+plan_count: 3
+api_plans_published: false
+api_plans_note: >-
+  There is no published price, tier, or quota for api.point.me. The Gateway
+  embedded platform is quoted per partner: the financial-institutions page states
+  "no upfront cost, no implementation fee, and no ongoing maintenance" and routes
+  every prospect to a demo form.
+plans:
+  - name: Basic
+    price: 0
+    currency: USD
+    billing_period: annual
+    monthly_equivalent: 0
+    included: >-
+      Free access to Explore — discover where your points can take you.
+    limits: >-
+      Search is for personal use and subject to a discretionary fair-use policy.
+  - name: Standard
+    price: 129
+    currency: USD
+    billing_period: annual
+    monthly_equivalent: 10.75
+    note: annual billing saves 10% versus monthly
+    included: >-
+      Everything in Basic, plus real-time award flight search, points wallet with
+      real-time sync, unlimited 365-day award calendar, advanced search filters,
+      step-by-step booking instructions, exclusive weekly points deals via email,
+      and 3 award flight deal alerts.
+    limits: 3 award flight deal alerts
+  - name: Premium
+    price: 260
+    currency: USD
+    billing_period: annual
+    monthly_equivalent: 21.67
+    included: >-
+      Everything in Standard, plus 5 route-specific award flight deal alerts, a
+      10% discount on concierge services, a $100 credit toward concierge services,
+      and a free points strategy consultation (stated $200 value).
+    limits: 5 award flight deal alerts
+add_ons:
+  - name: Concierge services
+    price_from: 200
+    currency: USD
+    unit: per passenger
+    description: >-
+      Full-service flight booking by point.me experts — research, transfers and
+      ticketing handled, custom itineraries, airline/lounge/date recommendations.
+  - name: Gift cards
+    price: null
+    description: point.me gift cards, priced at purchase.
+x-evidence:
+  checked: '2026-08-26'
+  probes:
+    - url: https://www.point.me/our-services
+      status: 200
+    - url: https://www.point.me/partnerships/financial-institutions/
+      status: 200

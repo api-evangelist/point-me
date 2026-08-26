@@ -1,0 +1,96 @@
+generated: '2026-08-26'
+method: probed
+source: >-
+  Direct unauthenticated HTTP probes of every point.me host reachable from apis.yml
+  and the site's own navigation, run 2026-08-26. Only auth.point.me serves real
+  /.well-known documents; www.point.me and connect.point.me answer 404 on every path,
+  and api.point.me answers 401 (WWW-Authenticate: Bearer) on every path including
+  /.well-known/*.
+description: >-
+  /.well-known probe of the point.me hosts. The single real hit is the Auth0-hosted
+  identity tenant at auth.point.me, which serves a complete OpenID Connect discovery
+  document, the identical RFC 8414 OAuth authorization-server metadata, and a JWKS.
+hosts:
+  - host: auth.point.me
+    note: >-
+      Auth0-hosted identity tenant (issuer https://auth.point.me/). This is the only
+      point.me host serving any /.well-known document.
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        content_type: application/json
+        file: point-me-openid-configuration.json
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: application/json
+        file: point-me-oauth-authorization-server.json
+        note: byte-identical to the openid-configuration document
+      - path: /.well-known/jwks.json
+        status: 200
+        content_type: application/json
+        file: point-me-jwks.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+  - host: www.point.me
+    note: >-
+      Next.js marketing + product site. Every /.well-known path returns the site's
+      HTML 404 page — an absence, recorded as one.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: api.point.me
+    note: >-
+      The API host. GET / returns HTTP 200 text/plain "Flight Search APIs"; every other
+      path, /.well-known/* included, returns 401 with WWW-Authenticate: Bearer and an
+      empty body. Nothing here is anonymously readable.
+    documents:
+      - path: /.well-known/security.txt
+        status: 401
+      - path: /.well-known/openid-configuration
+        status: 401
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+      - path: /.well-known/oauth-protected-resource
+        status: 401
+      - path: /.well-known/api-catalog
+        status: 401
+      - path: /.well-known/ai-plugin.json
+        status: 401
+      - path: /.well-known/agent-card.json
+        status: 401
+      - path: /.well-known/agent.json
+        status: 401
+  - host: connect.point.me
+    note: HubSpot-hosted help centre / careers / partnership microsite.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+x-evidence:
+  checked: '2026-08-26'
+  security_txt_served: false
+  agent_card_served: false
+  api_catalog_served: false

@@ -1,0 +1,114 @@
+generated: '2026-08-26'
+method: derived
+source: >-
+  Derived 2026-08-26 from what point.me actually serves: the 401 response headers of
+  https://api.point.me/, the OIDC discovery document at auth.point.me, robots.txt,
+  and the Gateway partnership pages. point.me publishes no API reference, so most
+  runtime conventions cannot be established at all — they are recorded as unknown
+  rather than guessed.
+description: >-
+  Cross-cutting runtime semantics for the point.me API surface. This artifact is
+  deliberately mostly unknown: the API host exists and is bearer-protected, but
+  there is no public contract, error reference, pagination guide, or versioning
+  policy to read them from.
+api: point-me-flight-search-api
+base_url: https://api.point.me
+api_style: 'unknown — no public contract; the host advertises itself as "Flight Search APIs"'
+
+authentication:
+  scheme: "Bearer token in the Authorization header (WWW-Authenticate: Bearer observed)"
+  identity: OpenID Connect via the Auth0 tenant at https://auth.point.me/
+  detail: authentication/point-me-authentication.yml
+
+security_headers_observed:
+  strict_transport_security: max-age=31536000 ; includeSubDomains
+  x_content_type_options: nosniff
+  x_frame_options: DENY
+  x_xss_protection: '1; mode=block'
+  cache_control: no-cache, no-store, max-age=0, must-revalidate
+  note: >-
+    Observed on live api.point.me responses. HSTS with includeSubDomains and a
+    DENY frame policy on an API host is a deliberate posture, not a default.
+
+cors:
+  vary: [Origin, Access-Control-Request-Method, Access-Control-Request-Headers]
+  note: The API host varies on the CORS preflight headers, implying per-origin allowlisting.
+
+idempotency:
+  supported: unknown
+  reason: no public contract or documentation describes request retry semantics
+
+pagination:
+  style: unknown
+  reason: no public contract
+
+versioning:
+  scheme: unknown
+  reason: no public contract, no changelog, and no version segment observable on the API host
+
+error_envelope:
+  format: unknown
+  reason: >-
+    Every anonymous request returns 401 with content-length 0 — no error body is
+    emitted to unauthenticated callers, so the envelope shape cannot be observed.
+
+rate_limit_signaling:
+  headers: []
+  documented: false
+  detail: rate-limits/point-me-rate-limits.yml
+
+reversibility:
+  state: not-assessable
+  write_surface: likely — Gateway performs point transfers and books flights
+  reversal_operations: []
+  window: null
+  detail: >-
+    point.me's Gateway platform executes irreversible-by-nature actions (loyalty
+    point transfers to airline programs are near-universally one-way, and award
+    tickets carry program-specific change and cancellation rules). Whether the API
+    exposes a cancel/refund/reverse operation, and inside what window, CANNOT be
+    established: there is no public contract and no partner documentation. No
+    window is asserted here because none is published, and inventing one on a
+    points-transfer API could cost a user real money.
+  consumer_cancellation_published:
+    subject: consumer subscription, not the API
+    source: https://www.point.me/terms-and-conditions
+    note: >-
+      The Terms of Use describe subscription billing and cancellation, which is a
+      billing-relationship reversal, not an API operation. It is recorded here only
+      so a reader does not mistake it for API reversibility.
+
+dry_run_mode:
+  supported: unknown
+  reason: no public contract
+
+agent_policy:
+  robots_content_signal: 'search=yes, ai-train=no, ai-input=yes'
+  markdown_twin: >-
+    point.me serves a markdown twin of its marketing pages — append .md to a page
+    URL (https://www.point.me/about.md returns text/markdown). This is an agent
+    affordance the company built deliberately and advertises in llms.txt.
+  terms_restriction: >-
+    The Terms of Use prohibit automated scraping and prohibit using the Services
+    "in connection with the training of machine learning or a neural network, deep
+    learning or artificial intelligence system or software".
+  detail: rate-limits/point-me-rate-limits.yml
+
+cross_references:
+  authentication: authentication/point-me-authentication.yml
+  scopes: scopes/point-me-scopes.yml
+  rate_limits: rate-limits/point-me-rate-limits.yml
+  conformance: conformance/point-me-conformance.yml
+  well_known: well-known/point-me-well-known.yml
+
+x-evidence:
+  checked: '2026-08-26'
+  probes:
+    - url: https://api.point.me/
+      status: 200
+    - url: https://api.point.me/docs
+      status: 401
+    - url: https://www.point.me/about.md
+      status: 200
+    - url: https://www.point.me/robots.txt
+      status: 200

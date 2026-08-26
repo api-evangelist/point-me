@@ -1,0 +1,169 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://auth.point.me/.well-known/openid-configuration (HTTP 200) for the identity
+  standards; https://www.point.me/partnerships/financial-institutions/ (HTTP 200) and
+  https://www.point.me/partnerships/ (HTTP 200) for the published compliance claims;
+  live api.point.me responses for transport posture. Checked 2026-08-26.
+description: >-
+  Cross-cutting and domain standards point.me can be shown to conform to. The
+  identity layer is genuinely standards-based and machine-verifiable; the API layer
+  is not assessable because no contract is published; the compliance claim (SOC 2)
+  is the company's own published assertion with no linked report or trust center.
+conformance:
+  - id: oidc
+    name: OpenID Connect Discovery 1.0
+    conforms: true
+    evidence: >-
+      https://auth.point.me/.well-known/openid-configuration returns HTTP 200 with a
+      complete discovery document — issuer, authorization_endpoint, token_endpoint,
+      userinfo_endpoint, jwks_uri, end_session_endpoint, scopes_supported,
+      claims_supported, id_token_signing_alg_values_supported.
+    method: probed
+  - id: oauth2
+    name: OAuth 2.0
+    conforms: true
+    evidence: >-
+      Authorization Code, Client Credentials, Refresh Token, Implicit, Device Code
+      (RFC 8628), Token Exchange (RFC 8693) and JWT Bearer (RFC 7523) grants are all
+      advertised at https://auth.point.me/oauth/token, with a token revocation
+      endpoint at /oauth/revoke (RFC 7009).
+    method: probed
+  - id: rfc8414
+    name: OAuth 2.0 Authorization Server Metadata
+    conforms: true
+    evidence: >-
+      https://auth.point.me/.well-known/oauth-authorization-server returns HTTP 200
+      with the full metadata document.
+    method: probed
+  - id: rfc7636
+    name: PKCE
+    conforms: true
+    evidence: 'code_challenge_methods_supported: [S256, plain] in the discovery document.'
+    method: probed
+  - id: rfc7591
+    name: OAuth 2.0 Dynamic Client Registration
+    conforms: true
+    evidence: 'registration_endpoint: https://auth.point.me/oidc/register in the discovery document.'
+    method: probed
+  - id: rfc9728
+    name: OAuth 2.0 Protected Resource Metadata
+    conforms: false
+    evidence: >-
+      https://api.point.me/.well-known/oauth-protected-resource returns 401, and
+      https://www.point.me/.well-known/oauth-protected-resource returns 404. The
+      resource server does not advertise its metadata anonymously, so an agent
+      cannot discover which authorization server protects it.
+    method: probed
+  - id: rfc9457
+    name: Problem Details for HTTP APIs
+    conforms: unknown
+    evidence: >-
+      Not assessable. Anonymous requests to api.point.me return 401 with
+      content-length 0 — no error body is emitted, and no contract or error
+      reference is published.
+    method: probed
+  - id: openapi
+    name: OpenAPI
+    conforms: false
+    evidence: >-
+      No OpenAPI, Swagger, GraphQL SDL, AsyncAPI, .proto or WSDL is published on any
+      point.me host. /openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json,
+      /api-docs, /docs and /redoc were probed on api.point.me (all 401) and on
+      www.point.me (all HTML 404).
+    method: probed
+  - id: hsts
+    name: HTTP Strict Transport Security
+    conforms: true
+    evidence: >-
+      api.point.me returns `strict-transport-security: max-age=31536000 ;
+      includeSubDomains` on both 200 and 401 responses.
+    method: probed
+  - id: llms-txt
+    name: llms.txt
+    conforms: true
+    evidence: >-
+      https://www.point.me/llms.txt returns HTTP 200 text/plain with a real llms.txt
+      document. It also documents a markdown-twin convention (append .md to any page
+      URL), which was verified live at https://www.point.me/about.md (200,
+      text/markdown).
+    method: probed
+    deviations:
+      - >-
+        The llms.txt advertises two files that do not exist:
+        https://www.point.me/markdown-index.txt and https://www.point.me/site-info.md
+        both return HTTP 404. Two of the file's twelve links are dead.
+      - >-
+        The "Home" entry points at https://www.point.me/index.md, which returns HTTP
+        404 — the markdown twin of the home page is not served at that path even
+        though the same convention works for /about.md and /terms-and-conditions.md.
+
+domain_standards:
+  market: award travel / loyalty redemption / embedded travel booking
+  candidates_probed:
+    - id: ndc
+      name: IATA NDC (New Distribution Capability)
+      conforms: unknown
+      evidence: >-
+        No contract to inspect. The Gateway FAQ references going live "via GDS" as an
+        integration path, which implies GDS/airline distribution plumbing behind the
+        platform, but point.me never names NDC, OTA/OpenTravel, or any airline
+        messaging standard in public material.
+    - id: opentravel
+      name: OpenTravel Alliance (OTA) messages
+      conforms: unknown
+      evidence: not named anywhere in point.me's public material
+  note: >-
+    REWARD-ONLY dimension, and nothing is asserted. point.me's market does have
+    distribution standards (NDC, OpenTravel), but with no readable contract there is
+    no spec location to point evidence at, so no domain-standard conformance is
+    claimed.
+
+compliance:
+  published: true
+  method: searched
+  certifications:
+    - name: SOC 2
+      status: claimed
+      quote: >-
+        "Enterprise-Grade Security. SOC 2 compliant. Configurable branding. SSO
+        integration. Performance dashboards." and, in the Gateway FAQ, "Gateway is
+        SOC2 certified and designed for issuer-grade security requirements."
+      source: https://www.point.me/partnerships/financial-institutions/
+      report_available: false
+      note: >-
+        A marketing-page assertion. No trust center, no report request flow, no
+        auditor named, and no date or Type (I/II) stated.
+  data_posture_claims:
+    - quote: >-
+        "The integration is read-only on your points balance and cardholder identity
+        — there is no write access to your core banking systems. You own all
+        settlement and customer data."
+      source: https://www.point.me/partnerships/financial-institutions/
+  trust_center: null
+  vulnerability_disclosure: false
+  vulnerability_disclosure_evidence: >-
+    /.well-known/security.txt returns 404 on www.point.me and connect.point.me, 401
+    on api.point.me, 404 on auth.point.me. No bug bounty or disclosure page found.
+
+x-evidence:
+  checked: '2026-08-26'
+  probes:
+    - url: https://auth.point.me/.well-known/openid-configuration
+      status: 200
+    - url: https://auth.point.me/.well-known/oauth-authorization-server
+      status: 200
+    - url: https://api.point.me/.well-known/oauth-protected-resource
+      status: 401
+    - url: https://www.point.me/partnerships/financial-institutions/
+      status: 200
+    - url: https://www.point.me/llms.txt
+      status: 200
+    - url: https://www.point.me/markdown-index.txt
+      status: 404
+    - url: https://www.point.me/site-info.md
+      status: 404
+    - url: https://www.point.me/index.md
+      status: 404
+    - url: https://www.point.me/about.md
+      status: 200

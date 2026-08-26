@@ -1,0 +1,57 @@
+generated: '2026-08-26'
+method: searched
+source: >-
+  https://www.point.me/our-services (HTTP 200) and
+  https://www.point.me/terms-and-conditions (HTTP 200), searched 2026-08-26.
+  point.me publishes no numeric rate limits and no rate-limit response headers,
+  because it publishes no developer documentation; what it does publish is a
+  fair-use constraint on the consumer search product and an automated-access
+  prohibition in its terms.
+description: >-
+  Published rate-limit posture for point.me. There are zero documented numeric
+  limits, zero documented rate-limit response headers, and zero documented
+  exhaustion status codes. What exists instead is a discretionary fair-use clause
+  and a contractual ban on automated access.
+api: point-me-flight-search-api
+limit_count: 0
+headers_documented: false
+headers: []
+exhaustion_status_code: null
+policies:
+  - scope: consumer search (per member)
+    limit: undocumented — discretionary
+    quote: >-
+      "Search is for personal use, and is subject to fair use policies. point.me
+      reserves the right to limit or otherwise constrain searches in case of
+      excessive use."
+    source: https://www.point.me/our-services
+  - scope: automated access (all services)
+    limit: prohibited
+    quote: >-
+      Terms of Use prohibit use of "any robot, spider, scraper, deep link or other
+      similar automated data gathering or extraction tools" against the Services,
+      and any action that "imposes ... an unreasonable or disproportionately large
+      load on our Services infrastructure".
+    source: https://www.point.me/terms-and-conditions
+agent_policy:
+  robots_txt: https://www.point.me/robots.txt
+  content_signal: 'search=yes, ai-train=no, ai-input=yes'
+  note: >-
+    point.me serves a Cloudflare Content-Signal directive in robots.txt permitting
+    search indexing and AI inference input while refusing AI training. Its Terms of
+    Use go further and prohibit use of the service "in connection with the training
+    of machine learning or a neural network, deep learning or artificial intelligence
+    system or software" — the stated policy and the deployed signal agree.
+  disallowed_paths: [/api/, /marketing-api/, /_next/data/, /preview/, /cms/, /debug/]
+note: >-
+  An honest zero. Limits for Gateway partners, if any, live in a commercial contract
+  and are not published.
+x-evidence:
+  checked: '2026-08-26'
+  probes:
+    - url: https://www.point.me/robots.txt
+      status: 200
+    - url: https://www.point.me/our-services
+      status: 200
+    - url: https://www.point.me/terms-and-conditions
+      status: 200

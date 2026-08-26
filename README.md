@@ -64,5 +64,20 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-POINT.ME is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+point.me is an award-travel company. It runs a real-time award flight search
+engine for consumers, and — through **point.me Gateway** — an API-first embedded loyalty-travel
+platform that banks and loyalty programs run inside their own branded apps.
+
+- Website: https://www.point.me/
+- Plans and pricing: https://www.point.me/our-services
+- Gateway (partnerships): https://www.point.me/partnerships/
+- Help centre: https://connect.point.me/help
+
+**API surface.** `https://api.point.me/` is live and identifies itself as `Flight Search APIs`,
+but every path on it answers `401` with `WWW-Authenticate: Bearer`, and point.me publishes no
+developer portal, API reference, or machine-readable contract. Gateway access is arranged through
+a demo form. What *is* publicly readable is the identity layer — the Auth0 tenant at
+`auth.point.me` serves a complete OpenID Connect discovery document, RFC 8414 authorization-server
+metadata, and a JWKS — plus an `llms.txt` and a markdown twin of the marketing site.
+
+_This profile records what point.me publishes publicly. No contract was fabricated._
