@@ -56,7 +56,7 @@ tags:
 - Search
 - Company
 apis:
-- aid: point-me-flight-search-api
+- aid: point-me:point-me-flight-search-api
   name: point.me Flight Search API
   description: 'The API host point.me operates behind its consumer search product and its Gateway embedded
     platform. https://api.point.me/ returns HTTP 200 text/plain "Flight Search APIs"; every other path
