@@ -55,6 +55,7 @@ tags:
 - Banking
 - Search
 - Company
+- Loyalty & Incentives
 apis:
 - aid: point-me:point-me-flight-search-api
   name: point.me Flight Search API
