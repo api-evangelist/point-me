@@ -64,20 +64,114 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-point.me is an award-travel company. It runs a real-time award flight search
-engine for consumers, and — through **point.me Gateway** — an API-first embedded loyalty-travel
-platform that banks and loyalty programs run inside their own branded apps.
+point.me is an award-travel company that operates a real-time award flight search engine for consumers and, through point.me Gateway, an API-first embedded loyalty-travel platform that banks and loyalty programs run inside their own branded apps. The consumer product searches award availability across 150+ airline and hotel loyalty programs on Basic/Standard/Premium annual subscriptions, and adds paid concierge booking. Gateway sells award search, point transfers and booking as an embedded integration to financial institutions (Amex among its named partners) and to loyalty programs. The API host api.point.me is live and identifies itself as "Flight Search APIs", but every path on it answers 401 with WWW-Authenticate: Bearer, and Gateway is sold through a demo form rather than a public developer portal, so no machine-readable contract is published.
 
-- Website: https://www.point.me/
-- Plans and pricing: https://www.point.me/our-services
-- Gateway (partnerships): https://www.point.me/partnerships/
-- Help centre: https://connect.point.me/help
+**Areas:** Travel · Award Travel · Loyalty · Points and Miles · Flights · Rewards · Embedded Finance · Banking · Search · Company · Loyalty & Incentives
 
-**API surface.** `https://api.point.me/` is live and identifies itself as `Flight Search APIs`,
-but every path on it answers `401` with `WWW-Authenticate: Bearer`, and point.me publishes no
-developer portal, API reference, or machine-readable contract. Gateway access is arranged through
-a demo form. What *is* publicly readable is the identity layer — the Auth0 tenant at
-`auth.point.me` serves a complete OpenID Connect discovery document, RFC 8414 authorization-server
-metadata, and a JWKS — plus an `llms.txt` and a markdown twin of the marketing site.
+## POINT.ME on APIs.io
 
-_This profile records what point.me publishes publicly. No contract was fabricated._
+Everything profiled for POINT.ME is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/point-me/](https://apis.io/providers/point-me/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [point.me Flight Search API](https://apis.io/apis/point-me/point-me-flight-search-api/) — The API host point.me operates behind its consumer search product and its Gateway embedded platform. https://api.point.me/ returns HTTP 200 text/plain…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [point-me-mcp.yml](https://apis.io/servers/point-me/point-me-mcp-yml/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Point Me Authentication](https://apis.io/security/point-me/point-me-authentication/)
+- [Point Me Domain Security](https://apis.io/security/point-me/point-me-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Point Me Scopes](https://apis.io/scopes/point-me/point-me-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Point Me Plans Pricing](https://apis.io/plans/point-me/point-me-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Point Me Rate Limits](https://apis.io/rate-limits/point-me/point-me-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.point.me/)
+- [Pricing](https://www.point.me/our-services)
+- [Sign up](https://point.me/signup/basic)
+- [Support](https://connect.point.me/help)
+- [Blog](https://www.point.me/insights/)
+- [Terms of service](https://www.point.me/terms-and-conditions)
+- [Privacy policy](https://www.point.me/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 32.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 74.1 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 84.2 |
+
+**Agent readiness 17.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+
+**Regulatory alignment 37.0** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/point-me/](https://apis.io/providers/point-me/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for POINT.ME: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/point-me/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
